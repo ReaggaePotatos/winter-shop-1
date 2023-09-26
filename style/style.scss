@@ -13,9 +13,24 @@ $font: 'Grtsk Peta';
     background-repeat: no-repeat;
     background-position: center;
 }
+@mixin df_ac {
+    display: flex;
+    align-items: center;
+}
+@mixin df_jcc {
+    display: flex;
+    justify-content: center;
+}
+@mixin df_ac_jcc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 :root {
     --container: 1360px;
+    --fz14: 14px;
+    --fz8: 8px;
 }
 body {
     background-color: $white;
@@ -24,7 +39,7 @@ body {
     color: $black;
     font-family: $font;
     box-sizing: border-box;
-    font-size: var(--fz18);
+    font-size: var(--fz14);
     font-weight: 400;
     color: $black;
 }
@@ -75,15 +90,15 @@ select {
         border-color: red!important;
     }
 }
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' fill='none'%3e%3cpath d='M4.2907 7.42566L0.618285 0.675658L7.96313 0.675659L4.2907 7.42566Z' fill='%23444444'/%3e%3c/svg%3e") calc(100% - 5px) / 10px no-repeat $white;
-    &::-ms-expand {
-        display: none;
-    }
-}
+// select {
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' fill='none'%3e%3cpath d='M4.2907 7.42566L0.618285 0.675658L7.96313 0.675659L4.2907 7.42566Z' fill='%23444444'/%3e%3c/svg%3e") calc(100% - 5px) / 10px no-repeat $white;
+//     &::-ms-expand {
+//         display: none;
+//     }
+// }
 .pt0 {
     padding-top: 0!important;
 }
@@ -97,40 +112,28 @@ select {
     gap: 10px;
     text-align: center;
     padding: 18px 37px;
-    background-color: $yellow;
+    background-color: $black;
     border: 1px solid transparent;
     font-weight: 500;
     transition: all .3s;
     cursor: pointer;
-    color: $black;
+    color: $white;
     text-transform: uppercase;
     &:hover {
-        background-color: #292929;
-        color: $white;
-        i {
+        background-color: $white;
+        color: $black;
+    }
+    &.white {
+        background-color: $white;
+        color: $black;
+        &:hover {
+            background-color: $black;
             color: $white;
         }
     }
-    &.borderWhite {
-        background-color: transparent;
-        border-color: $white;
+    &.red {
+        background-color: $red;
         color: $white;
-        &:hover {
-            background-color: $white;
-            color: $black;
-        }
-    }
-    &.black {
-        background-color: $black;
-        color: $white;
-        &:hover {
-            background-color: $yellow;
-            color: $black;
-        }
-    }
-    &.gray {
-        background-color: $gray;
-        color: $black;
         &:hover {
             background-color: $black;
             color: $white;
@@ -145,15 +148,196 @@ select {
 h1, h2, h3, h4, h5, h6 {
   color: $black;
 }
-.container,
-.container-big {
+.container {
     margin-left: auto;
     margin-right: auto;
     width: var(--container);
 }
-.container {
-    width: var(--container);
+
+.header-add {
+    background-color: $black;
+    color: $white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    a {
+        color: $white;
+    }
+    .header-addBlock {
+        padding: 15px 0;
+        .info-block {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .item {
+                @include df_ac;
+                &:nth-child(1) {
+                    gap: 35px;
+                }
+                &:nth-child(2) {
+                    > ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        @include df_ac;
+                        gap: 30px;
+                        li {
+                            @include df_ac;
+                            gap: 15px;
+                            .icon {
+                                width: 20px;
+                                height: 20px;
+                                img {
+                                    object-fit: contain;
+                                }
+                            }
+                        }
+                    }
+                }
+                .location {
+                    @include df_ac;
+                    gap: 15px;
+                    .text {
+                        @include df_ac;
+                        gap: 5px;
+                        span {
+                            display: inline-block;
+                        }
+                        select {
+                            padding: 0;
+                            margin: 0;
+                            background-color: transparent;
+                            border: 0;
+                            color: $white;
+                            flex: 1;
+                            option {
+                                color: $black;
+                            }
+                        }
+                    }
+                }
+                nav {
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        @include df_ac;
+                        gap: 26px;
+                    }
+                }
+            }
+        }
+    }
 }
-.container-big {
-    width: var(--container_big);
+header {
+    background-color: $white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .header {
+        .info-block {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 22px 0;
+            .item {
+                &.category {
+                    @include df_ac;
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        @include df_ac;
+                        gap: 25px;
+                        li {
+                            display: block;
+                            position: relative;
+                            &.active {
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: -10px;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: $black;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.logo-block {
+                    width: 240px;
+                    .logo {
+                        width: 100%;
+                        img {
+                            object-fit: contain;
+                        }
+                    }
+                }
+                &.functions {
+                    font-size: var(--fz8);
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        @include df_ac;
+                        justify-content: flex-end;
+                        gap: 25px;
+                        li {
+                            a {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 8px;
+                                .icon {
+                                    width: 24px;
+                                    height: 24px;
+                                    img {
+                                        object-fit: contain;
+                                    }
+                                }
+                                span {
+                                    display: block;
+                                    text-transform: uppercase;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.header-category {
+    background-color: $lgrey;
+    .header-categoryBlock {
+        padding: 17px 0;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            @include df_ac;
+            flex-wrap: wrap;
+            gap: 10px 25px;
+            li {
+                &.active,
+                &:hover {
+                    a {
+                        color: $red;
+                    }
+                }
+                a {
+                    display: block;
+                    transition: all .3s;
+                }
+            }
+        }
+    }
+}
+main {
+    height: 200vh;
 }
