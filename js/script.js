@@ -25,6 +25,35 @@ new Swiper(".mainSlider", {
     },
 });
 
+new Swiper(".newProductSlider", {
+    slidesPerView: 4,
+    spaceBetween: 25,
+    loop: true,
+    navigation: {
+      nextEl: ".newProductSection .swiper-button-next",
+      prevEl: ".newProductSection .swiper-button-prev",
+    },
+});
+
+new Swiper(".popularProductSlider", {
+    slidesPerView: 4,
+    spaceBetween: 25,
+    loop: true,
+    navigation: {
+      nextEl: ".popularProductSection .swiper-button-next",
+      prevEl: ".popularProductSection .swiper-button-prev",
+    },
+});
+
+new Swiper(".blogSlider", {
+    slidesPerView: 1.1,
+    loop: true,
+    navigation: {
+      nextEl: ".blogSlider .swiper-button-next",
+      prevEl: ".blogSlider .swiper-button-prev",
+    },
+});
+
 $(document).on('click', '.checkField', function (el) {
   el.preventDefault();
   checkField(el)
@@ -158,7 +187,6 @@ function checkField(el) {
     }
     if ($(el.target).parents('form').find('.error').length == 0) {
         sendAjax(field, el)
-        ym(94525815,'reachGoal','send_order')
         clearFields()
     }
 }
