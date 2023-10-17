@@ -295,3 +295,17 @@ function infoOpenModal(elem) {
     maskField()
     $('#infoModal').modal('show')
 }
+
+$('footer .logo'),an('click', function (elem) {
+    test('222', elem)
+})
+$('footer , logo').hover(function(elem)){
+    test('', )
+}
+function test(dataForm, el) {
+    console.log(dataForm);
+    $(elem.target).css({
+        'background-color'
+    })
+}
+
